@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Flask URL Shortener</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #27282c;
+            color: #fff;
+            font-family: Helvetica;
+        }
+        .container {
+            background: #fff;
+            color: #000;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 1em;
+            width: 350px;
+        }
+        .m-ud {
+            margin: 1em 0;
+        }
+        form input,
+        form button {
+            width: 100%;
+            padding: 12px;
+        }
+        form button {
+            display: inline-block;
+            margin-top: 1em;
+            background: #27282c;
+            color: #fff;
+            border: 2px solid orange;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-wrapper">
+	    {% if url %}
+	        <p class="m-ud" id="shortened-url"></p>
+	    {% endif %}
+            <form action="" method="post" id="url-form">
+                <input type="url" placeholder="Enter URI" name="url" required>
+                <button>Shorten</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const host = window.location.origin;
+	let url = document.querySelector("#shortened-url");
+	
+	url.textContent = host + "/{{ url }}";
+    </script>
+
+</body>
+</html>
